@@ -1,0 +1,29 @@
+{
+  "name": "omg-schedule",
+  "version": "0.0.1",
+  "description": "Scheduling microservice",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oms-services/schedule.git"
+  },
+  "author": "Microservices",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/oms-services/schedule/issues"
+  },
+  "homepage": "https://github.com/oms-services/schedule#readme",
+  "keywords": [
+    "microservice",
+    "omg"
+  ],
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-json-body": "^5.3.0",
+    "koa-router": "^7.4.0",
+    "request": "^2.88.0"
+  }
+}

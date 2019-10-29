@@ -1,0 +1,67 @@
+oms: 1
+info:
+  version: 1.0.0
+  title: Event scheduler
+  description: Allows to schedule future events
+  license:
+    name: Apache 2.0
+    url: https://opensource.org/licenses/Apache-2.0
+lifecycle:
+  startup:
+    command: ["node", "/app/src/index.js"]
+health:
+  http:
+    path: /health
+    port: 8080
+actions:
+  schedule:
+    help: Schedule events
+    http:
+      path: /schedule
+      method: post
+      port: 8080
+    arguments:
+      name:
+        type: string
+        required: true
+        help: Name of the to be scheduled event
+        in: requestBody
+      delay:
+        type: int
+        help: Event delay in seconds
+        required: true
+        in: requestBody
+      data:
+        type: any
+        required: false
+        help: Additional event data
+        in: requestBody
+    output:
+      type: none
+  event:
+    help: Schedule events
+    events:
+      triggered:
+        help: Subscribe to scheduled events
+        http:
+          port: 8080
+          subscribe:
+            path: /subscribe
+            method: post
+            contentType: application/json
+        arguments:
+          name:
+            type: string
+            help: |
+              Name of the to be scheduled event names to select.
+              If not provided, all scheduled event will be listened for.
+            in: requestBody
+            required: false
+        output:
+          type: object
+          contentType: application/json
+          properties:
+            name:
+              type: string
+            data:
+              type: any
